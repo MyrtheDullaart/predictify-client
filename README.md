@@ -1,1 +1,0 @@
-# predictify-client
