@@ -3,8 +3,10 @@ import Form from "../../components/form/index.jsx"
 import TextInput from "../../components/form/textInput/index.jsx"
 import "./login.css"
 import Button from "../../components/button/index.jsx"
+import useAuth from "../../hooks/useAuth"
 
 const Login = () => {
+    const { handleLogin } = useAuth()
     const [formData, setFormData] = useState({ email: "", password: "" })
 
     const onChange = (e) => {
@@ -40,7 +42,7 @@ const Login = () => {
                 <div className="login-button-container">
                     <Button
                         text="Log in"
-                        onClick={() => onLogin(formData.email, formData.password)}
+                        onClick={() => handleLogin(formData.email, formData.password)}
                         classes="login-button"
                     />
                 </div>
@@ -48,7 +50,7 @@ const Login = () => {
                     <p>Need an account?</p>
                     <Button
                         text="Register"
-                        onClick={() => onLogin(formData.email, formData.password)}
+                        onClick={() => 'sjc'}
                         classes="register-button"
                     />
                 </div>
