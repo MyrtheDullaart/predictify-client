@@ -4,10 +4,12 @@ import TextInput from "../../components/form/textInput/index.jsx"
 import "./login.css"
 import Button from "../../components/button/index.jsx"
 import useAuth from "../../hooks/useAuth"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
-    const { handleLogin } = useAuth()
+    const { handleLogin, error } = useAuth()
     const [formData, setFormData] = useState({ email: "", password: "" })
+    const navigate = useNavigate()
 
     const onChange = (e) => {
         const { name, value } = e.target
@@ -39,6 +41,11 @@ const Login = () => {
                             type={"password"}
                         />
                 </Form>
+
+                <div className="error-message-container">
+                    {error && <p className="error-message">{error}</p>}
+                </div>
+
                 <div className="login-button-container">
                     <Button
                         text="Log in"
@@ -46,11 +53,12 @@ const Login = () => {
                         classes="login-button"
                     />
                 </div>
+
                 <div className="need-account-container">
                     <p>Need an account?</p>
                     <Button
                         text="Register"
-                        onClick={() => 'sjc'}
+                        onClick={() => navigate('/register')}
                         classes="register-button"
                     />
                 </div>

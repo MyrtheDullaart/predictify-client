@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react"
 import { useNavigate, useLocation, Navigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import { login } from "../service/apiClient"
+import ERR from "../service/errors.js"
 
 const AuthContext = createContext()
 
@@ -10,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const location = useLocation()
   const [token, setToken] = useState(null)
   const [user, setUser] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token")
@@ -22,21 +24,32 @@ const AuthProvider = ({ children }) => {
 
   const handleLogin = async (email, password) => {
     try {
+        if (!email || !password) {
+            throw new Error(ERR.ENTER_EMAIL_PASSWORD)
+        }
+
         const res = await login(email, password)
 
+        if (res.data.error) {
+            setError(res.data.error)
+
+            return
+        }
 
         if (res.data.token) {
             localStorage.setItem("token", res.data.token)
             setToken(res.data.token)
             navigate(location.state?.from?.pathname || "/")
+            setError(null)
 
             return
         }
         setUser({ ...res.data.user })
+        setError(ERR.LOGIN_FAILED)
 
         navigate("/login")
     } catch (error) {
-        console.log(error)
+        setError(error.message)
     }
   }
 
@@ -50,7 +63,9 @@ const AuthProvider = ({ children }) => {
     token,
     user,
     handleLogout,
-    handleLogin
+    handleLogin,
+    error,
+    setError
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

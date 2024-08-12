@@ -20,11 +20,16 @@ body {
     gap: 1.5rem;
 }
 
+.login-form h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+    color: #26294C;
+}
+
 .login-form form {
 	display: grid;
 	grid-template-rows: repeat(2, auto);
 	gap: 24px;
-    margin-bottom: 3rem;
 }
 
 .need-account-container {
@@ -46,6 +51,9 @@ body {
     background-color: #673C4F;
     height: 60px;
     width: 300px;
+    font-size: 1.5rem;
+    display: grid;
+    place-content: center;
 }
 
 .login-button-container {
@@ -55,4 +63,8 @@ body {
 
 .register-button {
     background-color: #515A47;
+}
+
+.error-message-container {
+    height: 10px;
 }
