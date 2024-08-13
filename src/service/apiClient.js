@@ -6,14 +6,18 @@ async function login(email, password) {
 }
 
 async function register(email, password, first_name, last_name) {
-    const res = await post('users/register', { email, password, first_name, last_name }, false)
-  
-    if (res.data.error) {
-      return res
-    }
+  const res = await post('users/register', { email, password, first_name, last_name }, false)
 
-    return await login(email, password)
+  if (res.data.error) {
+    return res
   }
+
+  return await login(email, password)
+}
+
+async function getUser(id) {
+  return await get(`users/${id}`)
+}
 
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
@@ -48,4 +52,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json()
 }
 
-export { login, register }
+export { login, register, getUser }
