@@ -3,4 +3,44 @@ aside {
     grid-area: navigation;
     margin: 1rem;
     border-radius: 15px;
+    display: grid;
+    justify-content: center;
+}
+
+.navigation-ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside img {
+    height: 50px;
+}
+
+aside p {
+    color: #B0C4B1;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 0;
+    display: grid;
+    place-content: center;
+}
+
+aside a {
+    display: grid;
+    place-content: center;
+}
+
+.about-container {
+    display: grid;
+    align-content: end;
+}
+
+.about-container a {
+    display: grid;
+    padding-top: 10px;
+    border-top: #adadac 1px solid;
+}
+
+.home-text {
+    color: #515a47;
 }
