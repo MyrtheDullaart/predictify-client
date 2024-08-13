@@ -4,6 +4,8 @@ import useAuth from "../hooks/useAuth"
 import { login, register } from "../service/apiClient"
 import ERR from "../service/errors.js"
 import { validateEmail, validatePassword } from "../service/validation.js"
+import Header from "../components/header/index.jsx"
+import Navigation from "../components/navigation/index.jsx"
 
 const AuthContext = createContext()
 
@@ -11,7 +13,6 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const [token, setToken] = useState(null)
-  const [user, setUser] = useState(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -45,9 +46,8 @@ const AuthProvider = ({ children }) => {
 
             return
         }
-        setUser({ ...res.data.user })
-        setError(ERR.LOGIN_FAILED)
 
+        setError(ERR.LOGIN_FAILED)
         navigate("/login")
     } catch (error) {
         setError(error.message)
@@ -57,7 +57,6 @@ const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem("token")
     setToken(null)
-    setUser(null)
   }
 
   const handleRegister = async (email, password, first_name, last_name) => {
@@ -83,10 +82,8 @@ const AuthProvider = ({ children }) => {
       }
 
       localStorage.setItem("token", res.data.token)
-      setUser({ ...res.data.user })
       setToken(res.data.token)
       navigate("/")
-      setError(ERR.REGISTRATION_FAILED)
     } catch (error) {
       setError(error.message)
     }
@@ -94,7 +91,6 @@ const AuthProvider = ({ children }) => {
 
   const value = {
     token,
-    user,
     handleLogout,
     handleLogin,
     error,
@@ -115,7 +111,9 @@ const ProtectedRoute = ({ children }) => {
 
   return (
     <div className="container">
-      {children}
+        <Header />
+        <Navigation />
+        {children}
     </div>
   )
 }

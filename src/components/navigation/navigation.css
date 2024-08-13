@@ -1,0 +1,6 @@
+aside {
+    background-color: white;
+    grid-area: navigation;
+    margin: 1rem;
+    border-radius: 15px;
+}
