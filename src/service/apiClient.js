@@ -5,6 +5,16 @@ async function login(email, password) {
   return await post('login', { email, password }, false)
 }
 
+async function register(email, password, first_name, last_name) {
+    const res = await post('users', { email, password, first_name, last_name }, false)
+  
+    if (res.data.error) {
+      return res
+    }
+
+    return await login(email, password)
+  }
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
 }
@@ -38,4 +48,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json()
 }
 
-export { login }
+export { login, register }

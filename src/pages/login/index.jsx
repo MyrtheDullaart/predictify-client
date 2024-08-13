@@ -24,6 +24,7 @@ const Login = () => {
             <div className="logo-container">
                 <img src="/../../src/assets/logo.png" alt="logo" className="logo"/>
             </div>
+            
             <div className="login-form">
                 <h2>Login</h2>
                 <Form>

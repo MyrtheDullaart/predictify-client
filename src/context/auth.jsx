@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from "react"
 import { useNavigate, useLocation, Navigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
-import { login } from "../service/apiClient"
+import { login, register } from "../service/apiClient"
 import ERR from "../service/errors.js"
+import { validateEmail, validatePassword } from "../service/validation.js"
 
 const AuthContext = createContext()
 
@@ -59,13 +60,48 @@ const AuthProvider = ({ children }) => {
     setUser(null)
   }
 
+  const handleRegister = async (email, password, first_name, last_name) => {
+    try {
+      if (!email || !password || !first_name || !last_name) {
+        throw new Error(ERR.REQUIRED_FIELDS_MISSING)
+      }
+
+      if (!validateEmail(email)) {
+        throw new Error(ERR.EMAIL_ERROR_MESSAGE)
+      }
+
+      if (!validatePassword(password)) {
+        throw new Error(ERR.PASSWORD_REQUIRMENTS)
+      }
+
+      const res = await register(email, password, first_name, last_name)
+
+      console.log(res)
+
+      if (res.data.error) {
+        setError(res.data.error)
+
+        return
+      }
+
+      localStorage.setItem("token", res.data.token)
+      setUser({ ...res.data.user })
+      setToken(res.data.token)
+      navigate("/")
+      setError(ERR.REGISTRATION_FAILED)
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
   const value = {
     token,
     user,
     handleLogout,
     handleLogin,
     error,
-    setError
+    setError,
+    handleRegister
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
