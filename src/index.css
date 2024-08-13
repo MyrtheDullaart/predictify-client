@@ -38,7 +38,7 @@ button {
   width: 100vw;
   background-color: #E6E5E3;
   grid-template-columns: 150px 1fr;
-  grid-template-rows: 95px 1fr;
+  grid-template-rows: 75px 1fr;
   grid-template-areas: 
   "header header"
   "navigation main";
