@@ -6,7 +6,7 @@ async function login(email, password) {
 }
 
 async function register(email, password, first_name, last_name) {
-    const res = await post('users', { email, password, first_name, last_name }, false)
+    const res = await post('users/register', { email, password, first_name, last_name }, false)
   
     if (res.data.error) {
       return res

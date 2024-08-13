@@ -76,8 +76,6 @@ const AuthProvider = ({ children }) => {
 
       const res = await register(email, password, first_name, last_name)
 
-      console.log(res)
-
       if (res.data.error) {
         setError(res.data.error)
 
