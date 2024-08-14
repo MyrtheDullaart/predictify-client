@@ -9,6 +9,7 @@ const Questions = ({ questions }) => {
                         key={question.id}
                         title={question.title}
                         user= {question.user}
+                        forecasts={question.forecasts}
                     />
                 )
             })}

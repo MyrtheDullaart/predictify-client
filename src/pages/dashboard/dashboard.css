@@ -1,6 +1,7 @@
 main {
     margin-right: 1rem;
     margin-top: 1rem;
+    overflow: auto;
 }
 
 .questions-ul {
@@ -82,4 +83,24 @@ main {
 .search-icon-container {
     display: grid;
     place-content: center;
+}
+
+main {
+    --sb-track-color: #E6E5E3;
+    --sb-thumb-color: #b0c4b1;
+    --sb-size: 7px;
+}
+  
+main::-webkit-scrollbar {
+width: var(--sb-size);
+}
+
+main::-webkit-scrollbar-track {
+background: var(--sb-track-color);
+border-radius: 7px;
+}
+
+main::-webkit-scrollbar-thumb {
+background: var(--sb-thumb-color);
+border-radius: 7px;
 }
