@@ -1,0 +1,17 @@
+main {
+    margin-right: 1rem;
+}
+
+.questions-ul {
+    padding: 0;
+    list-style: none;
+}
+
+.add-question-button {
+    padding: 5px 15px;
+    background-color: #673C4F;
+}
+
+.add-question-button img {
+    height: 20px;
+}

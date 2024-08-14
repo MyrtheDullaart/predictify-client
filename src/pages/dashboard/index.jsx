@@ -14,6 +14,7 @@ const Dashboard = () => {
       <>
         <main>
           <div className="filter-container">
+            <button className="add-question-button"><img src="../../src/assets/plus-icon.svg" alt="Plus icon" /></button>
 
           </div>
 

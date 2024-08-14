@@ -1,0 +1,22 @@
+.question-li {
+    background-color: white;
+    display: grid;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.profile-card-question-container {
+    background-color: #26294C;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.question-title {
+    font-size: 1.2rem;
+}
