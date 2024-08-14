@@ -20,3 +20,42 @@
 .question-title {
     font-size: 1.2rem;
 }
+
+.more-button {
+    background-color: #673C4F;
+    width: 25px;
+    height: 20px;
+    padding: 0;
+    display: grid;
+    place-content: center;
+}
+
+.forecast-average {
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.resolve-button {
+    background-color: #673C4F;
+    width: min-content;
+    padding: 4px 10px;
+}
+
+.resolved {
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    width: 77.71px;
+    height: 31px;
+    border-radius: 8px;
+    display: grid;
+    place-content: center;
+}
+
+.YES {
+    background-color: #86EFAC; 
+}
+
+.NO {
+    background-color: #EF9F9F;
+}

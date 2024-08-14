@@ -10,6 +10,7 @@ const Questions = ({ questions }) => {
                         title={question.title}
                         user= {question.user}
                         forecasts={question.forecasts}
+                        resolution={question.resolution}
                     />
                 )
             })}

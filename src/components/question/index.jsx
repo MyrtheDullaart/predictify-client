@@ -3,7 +3,7 @@ import Forecasts from "../forecasts"
 import ProfileCardQuestion from "../questionProfileCard"
 import "./question.css"
 
-const Question = ({ title, user, forecasts }) => {
+const Question = ({ title, user, forecasts, resolution }) => {
     const [showMore, setShowMore] = useState(false)
     let forecastAverage = null
 
@@ -24,13 +24,21 @@ const Question = ({ title, user, forecasts }) => {
             <p className="question-title">{title}</p>
 
             {forecastAverage && 
-                <p>{forecastAverage}</p>
+                <p className="forecast-average">{forecastAverage}</p>
             }
 
             {forecasts.length > 0 && 
                 <button className="more-button" onClick={() => setShowMore(!showMore)}>
                     <img src="../../src/assets/down-arrow-icon.svg" alt="Down arrow icon" />
                 </button>
+            }
+
+            {!resolution && 
+                <button className="resolve-button">Resolve</button>
+            }
+
+            {resolution && 
+                <p className={`resolved ${resolution}`}>{resolution}</p>
             }
 
             {showMore && <Forecasts forecasts={forecasts}/>}

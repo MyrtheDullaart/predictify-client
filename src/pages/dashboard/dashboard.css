@@ -43,6 +43,12 @@ main {
     gap: 1rem;
 }
 
+#filter:focus {
+    border: none !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .filter-container img {
     height: 30px;
 }
