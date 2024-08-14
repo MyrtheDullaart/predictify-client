@@ -19,8 +19,9 @@ async function getUser(id) {
   return await get(`users/${id}`)
 }
 
-const getQuestions = async () => {
-  const res = await get('questions')
+const getQuestions = async (resolved) => {
+  const query = `?resolved=${resolved}`
+  const res = await get('questions', query)
   return res.data.questions
 }
 
@@ -32,11 +33,11 @@ async function patch(endpoint, data, auth = true) {
   return await request('PATCH', endpoint, data, auth)
 }
 
-async function get(endpoint, auth = true) {
-  return await request('GET', endpoint, null, auth)
+async function get(endpoint, query, auth = true, ) {
+  return await request('GET', endpoint, null, auth, query)
 }
 
-async function request(method, endpoint, data, auth = true) {
+async function request(method, endpoint, data, auth = true, query) {
   const opts = {
     headers: {
       'Content-Type': 'application/json',
@@ -50,6 +51,12 @@ async function request(method, endpoint, data, auth = true) {
 
   if (auth) {
     opts.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+  }
+
+  if (query) {
+    const response = await fetch(`${API_URL}/${endpoint}${query}`, opts)
+
+    return response.json()
   }
 
   const response = await fetch(`${API_URL}/${endpoint}`, opts)
