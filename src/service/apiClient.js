@@ -19,6 +19,11 @@ async function getUser(id) {
   return await get(`users/${id}`)
 }
 
+const getQuestions = async () => {
+  const res = await get('questions')
+  return res.data.questions
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
 }
@@ -52,4 +57,4 @@ async function request(method, endpoint, data, auth = true) {
   return response.json()
 }
 
-export { login, register, getUser }
+export { login, register, getUser, getQuestions }
