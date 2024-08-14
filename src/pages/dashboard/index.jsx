@@ -5,7 +5,8 @@ import { getQuestions } from "../../service/apiClient"
 
 const Dashboard = () => {
     const [questions, setQuestions] = useState([])
-    const [resolved, setResolved] = useState(null)
+    const [resolved, setResolved] = useState("")
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
         getQuestions(resolved).then(setQuestions)
@@ -13,6 +14,16 @@ const Dashboard = () => {
 
     const handleChange = (e) => {
         setResolved(e.target.value)
+    }
+
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleSearchSumbit = (e) => {
+        e.preventDefault()
+
+        getQuestions(resolved, search).then(setQuestions)
     }
 
     return (
@@ -25,13 +36,13 @@ const Dashboard = () => {
                 </button>
             </div>
 
-            <div className="search-container">
-                <input type="search" placeholder="Search"/>
+            <form className="search-container" onSubmit={handleSearchSumbit}>
+                <input className="search" type="search" placeholder="Search" value={search} onChange={handleSearchChange}/>
 
                 <div className="search-icon-container">
                     <img src="../../src/assets/search-icon.svg" alt="Search icon" />
                 </div>
-            </div>
+            </form>
 
             <div className="filter-container">
                 <select name="filter" id="filter" onChange={handleChange}>

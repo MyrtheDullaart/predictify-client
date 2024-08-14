@@ -64,7 +64,7 @@ main {
     height: 20px;
 }
 
-.search-container input {
+.search {
     background-color: white;
     padding: 10px 20px;
     border-radius: 10px;
@@ -73,8 +73,10 @@ main {
     width: 20rem;
 }
 
-.search-container input:focus {
-    outline: none;
+.search:focus {
+    border: none !important; 
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .search-icon-container {

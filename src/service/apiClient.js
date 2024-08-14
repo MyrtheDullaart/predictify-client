@@ -19,8 +19,13 @@ async function getUser(id) {
   return await get(`users/${id}`)
 }
 
-const getQuestions = async (resolved) => {
-  const query = `?resolved=${resolved}`
+const getQuestions = async (resolved, search) => {
+  let query = `?resolved=${resolved}`
+
+  if (search) {
+    query = `?resolved=${resolved}&&search=${search}`
+  }
+  
   const res = await get('questions', query)
   return res.data.questions
 }
