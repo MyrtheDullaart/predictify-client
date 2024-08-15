@@ -1,7 +1,7 @@
-const Forecast = ({ prediction }) => {
+const Forecast = ({ prediction, author }) => {
   return (
     <li className="forecast-li">
-        <p className="forecast-prediction">{`${prediction * 100}%`}</p>
+        <p className="forecast-prediction">{author.first_name} {author.last_name}: {`${(prediction * 100).toFixed(0)}%`}</p>
     </li>
   )
 }

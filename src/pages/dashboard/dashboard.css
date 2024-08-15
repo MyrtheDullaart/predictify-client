@@ -27,6 +27,7 @@ main {
     padding-left: 20px;
     display: grid;
     grid-template-columns: 1fr 1.3fr 250px;
+    align-items: center;
 }
 
 #filter {

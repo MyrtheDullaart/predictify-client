@@ -8,6 +8,7 @@ const Forecasts = ({ forecasts }) => {
                     <Forecast
                         key={forecast.id}
                         prediction={forecast.prediction}
+                        author={forecast.user}
                     />
                 )
             })}

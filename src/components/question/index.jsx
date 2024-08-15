@@ -5,6 +5,7 @@ import "./question.css"
 
 const Question = ({ title, user, forecasts, resolution }) => {
     const [showMore, setShowMore] = useState(false)
+    const [forecast, setForecast] = useState("")
     let forecastAverage = null
 
     if (forecasts.length >0) {
@@ -14,32 +15,54 @@ const Question = ({ title, user, forecasts, resolution }) => {
             forecastArray.push(Number(f.prediction))
         })
     
-        forecastAverage = ((forecastArray.reduce((a, b) => a + b, 0) / forecastArray.length) * 100).toFixed(0) + '%'
+        forecastAverage = ((forecastArray.reduce((a, b) => a + b, 0) / forecastArray.length) * 100).toFixed(0)
+    }
+
+    const handleChange = (e) => {
+        setForecast(e.target.value)
+    }
+
+    const handleSumbit = (e) => {
+        const inputLength = forecast.length
+
+        if (inputLength === 2) {
+           e.preventDefault()
+
+           setForecast("")
+        }
     }
 
 
     return (
         <li className="question-li">
-            <ProfileCardQuestion user={user}/>
-            <p className="question-title">{title}</p>
+            <div className="question-container">
+                <ProfileCardQuestion user={user}/>
+                <p className="question-title">{title}</p>
 
-            {forecastAverage && 
-                <p className="forecast-average">{forecastAverage}</p>
-            }
+                <div className="more-container">
+                    {forecasts.length > 0 && 
+                        <button className="more-button" onClick={() => setShowMore(!showMore)}>
+                            <img src="../../src/assets/down-arrow-icon.svg" alt="Down arrow icon" />
+                        </button>
+                    }
+                </div>
 
-            {forecasts.length > 0 && 
-                <button className="more-button" onClick={() => setShowMore(!showMore)}>
-                    <img src="../../src/assets/down-arrow-icon.svg" alt="Down arrow icon" />
-                </button>
-            }
+                <div className="new-forecast-container">
+                    <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleSumbit} value={forecast}/>
+                    <p>%</p>
+                </div>
+            </div>
 
-            {!resolution && 
-                <button className="resolve-button">Resolve</button>
-            }
+            <div className="resolution-container">
+                {!resolution && 
+                    <button className="resolve-button">Resolve</button>
+                }
 
-            {resolution && 
-                <p className={`resolved ${resolution}`}>{resolution}</p>
-            }
+                {resolution && 
+                    <p className={`resolved ${resolution}`}>{resolution}</p>
+                }
+            </div>
+
 
             {showMore && <Forecasts forecasts={forecasts}/>}
         </li>

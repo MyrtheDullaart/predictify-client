@@ -3,6 +3,7 @@
     display: grid;
     padding: 30px;
     border-radius: 20px;
+    gap: 1rem;
 }
 
 .profile-card-question-container {
@@ -15,10 +16,13 @@
     color: white;
     font-weight: bold;
     font-size: 0.8rem;
+    grid-area: profile;
 }
 
 .question-title {
     font-size: 1.2rem;
+    grid-area: question;
+    margin: 0;
 }
 
 .more-button {
@@ -28,17 +32,14 @@
     padding: 0;
     display: grid;
     place-content: center;
-}
-
-.forecast-average {
-    font-weight: bolder;
-    font-size: 1.2rem;
+    grid-area: more;
 }
 
 .resolve-button {
     background-color: #673C4F;
     width: min-content;
     padding: 4px 10px;
+    grid-area: resolution;
 }
 
 .resolved {
@@ -50,6 +51,8 @@
     border-radius: 8px;
     display: grid;
     place-content: center;
+    grid-area: resolution;
+    margin: 0;
 }
 
 .YES {
@@ -58,4 +61,66 @@
 
 .NO {
     background-color: #EF9F9F;
+}
+
+.new-forecast-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #E6E5E3;
+    color: black;
+    width: min-content;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 8px;
+    place-content: center;
+    grid-area: forecast;
+}
+
+.new-forecast-container p {
+    height: 30px;
+    margin: 0;
+    display: grid;
+    place-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.new-forecast-container input {
+    background-color: #E6E5E3;
+    color: black;
+    border: none;
+    width: 20px;
+    height: 30px;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.new-forecast-container input::placeholder {
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: right;
+}
+
+.new-forecast-container input:focus {
+    outline: none;
+}
+
+.question-container {
+    display: grid;
+    grid-template-columns: 30px 1fr min-content;
+    grid-template-areas: 'profile question more forecast';
+    gap: 1rem;
+}
+
+.resolution-container {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-areas: '. resolution';
+    gap: 10px;
+}
+
+.more-container {
+    display: grid;
+    place-content: center;
 }
