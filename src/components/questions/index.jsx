@@ -1,6 +1,6 @@
 import Question from '../question'
 
-const Questions = ({ questions }) => {
+const Questions = ({ questions, setQuestions }) => {
     return (
         <ul className='questions-ul'>
             {questions.map((question) => {
@@ -11,6 +11,7 @@ const Questions = ({ questions }) => {
                         user= {question.user}
                         forecasts={question.forecasts}
                         resolution={question.resolution}
+                        questionId={question.id}
                     />
                 )
             })}

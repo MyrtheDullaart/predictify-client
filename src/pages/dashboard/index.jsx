@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import Questions from "../../components/questions"
 import "./dashboard.css"
 import { getQuestions } from "../../service/apiClient"
+
+export const DataContext = createContext()
 
 const Dashboard = () => {
     const [questions, setQuestions] = useState([])
@@ -28,37 +30,39 @@ const Dashboard = () => {
 
     return (
       <>
-        <main>
-          <div className="add-filter-container">
-            <div className="add-question-button-container">
-                <button className="add-question-button">
-                    <img src="../../src/assets/plus-icon.svg" alt="Plus icon" />
-                </button>
-            </div>
-
-            <form className="search-container" onSubmit={handleSearchSumbit}>
-                <input className="search" type="search" placeholder="Search" value={search} onChange={handleSearchChange}/>
-
-                <div className="search-icon-container">
-                    <img src="../../src/assets/search-icon.svg" alt="Search icon" />
+        <DataContext.Provider value={{questions, setQuestions, resolved}}>
+            <main>
+            <div className="add-filter-container">
+                <div className="add-question-button-container">
+                    <button className="add-question-button">
+                        <img src="../../src/assets/plus-icon.svg" alt="Plus icon" />
+                    </button>
                 </div>
-            </form>
 
-            <div className="filter-container">
-                <select name="filter" id="filter" onChange={handleChange}>
-                    <option value="">All questions</option>
-                    <option value="false">Unresolved questions</option>
-                    <option value="true">Resolved questions</option>
-                </select>
+                <form className="search-container" onSubmit={handleSearchSumbit}>
+                    <input className="search" type="search" placeholder="Search" value={search} onChange={handleSearchChange}/>
 
-                <img src="../../src/assets/filter-icon.svg" alt="Filter icon" />
+                    <div className="search-icon-container">
+                        <img src="../../src/assets/search-icon.svg" alt="Search icon" />
+                    </div>
+                </form>
+
+                <div className="filter-container">
+                    <select name="filter" id="filter" onChange={handleChange}>
+                        <option value="">All questions</option>
+                        <option value="false">Unresolved questions</option>
+                        <option value="true">Resolved questions</option>
+                    </select>
+
+                    <img src="../../src/assets/filter-icon.svg" alt="Filter icon" />
+                </div>
             </div>
-          </div>
 
-          <div className="questions-container">
-            <Questions questions={questions}/>
-          </div>
-        </main>
+            <div className="questions-container">
+                <Questions questions={questions}/>
+            </div>
+            </main>
+        </DataContext.Provider>
       </>
     )
   }

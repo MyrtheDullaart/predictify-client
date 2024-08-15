@@ -1,14 +1,22 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Forecasts from "../forecasts"
 import ProfileCardQuestion from "../questionProfileCard"
 import "./question.css"
+import { createForecast, getQuestions } from "../../service/apiClient"
+import { DataContext } from "../../pages/dashboard"
 
-const Question = ({ title, user, forecasts, resolution }) => {
+const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const [showMore, setShowMore] = useState(false)
-    const [forecast, setForecast] = useState("")
+    const [forecastData, setForecastData] = useState({
+        questionId: questionId,
+        prediction: ""
+    })
+    const { questions, setQuestions, resolved } = useContext(DataContext)
+
+
     let forecastAverage = null
 
-    if (forecasts.length >0) {
+    if (forecasts.length > 0) {
         const forecastArray = []
 
         forecasts.forEach((f) => {
@@ -19,16 +27,27 @@ const Question = ({ title, user, forecasts, resolution }) => {
     }
 
     const handleChange = (e) => {
-        setForecast(e.target.value)
+        setForecastData({
+            questionId: questionId,
+            prediction: e.target.value
+        })
     }
 
-    const handleSumbit = (e) => {
-        const inputLength = forecast.length
+    const handleSumbit = async (e) => {
+        const inputLength = forecastData.prediction.length
 
         if (inputLength === 2) {
-           e.preventDefault()
+            e.preventDefault()
 
-           setForecast("")
+            forecastData.prediction = (Number(forecastData.prediction) / 100).toFixed(2)
+            
+            await createForecast(forecastData)
+            getQuestions(resolved).then(setQuestions)
+
+            setForecastData({
+                questionId: questionId,
+                prediction: ""
+            })
         }
     }
 
@@ -48,7 +67,7 @@ const Question = ({ title, user, forecasts, resolution }) => {
                 </div>
 
                 <div className="new-forecast-container">
-                    <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleSumbit} value={forecast}/>
+                    <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
                     <p>%</p>
                 </div>
             </div>

@@ -30,6 +30,10 @@ const getQuestions = async (resolved, search) => {
   return res.data.questions
 }
 
+async function createForecast(data) {
+  return await post('forecasts', data)
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
 }
@@ -69,4 +73,4 @@ async function request(method, endpoint, data, auth = true, query) {
   return response.json()
 }
 
-export { login, register, getUser, getQuestions }
+export { login, register, getUser, getQuestions, createForecast }

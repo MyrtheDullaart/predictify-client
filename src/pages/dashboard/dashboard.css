@@ -64,10 +64,6 @@ main {
     place-content: center;
 }
 
-.search-container:focus-within {
-    outline: black 1px solid;
-}
-
 .search-container img {
     height: 20px;
 }
