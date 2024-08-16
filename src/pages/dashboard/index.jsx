@@ -2,6 +2,9 @@ import { createContext, useEffect, useState } from "react"
 import Questions from "../../components/questions"
 import "./dashboard.css"
 import { getQuestions } from "../../service/apiClient"
+import plusIcon from "../../assets/plus-icon.svg"
+import filterIcon from "../../assets/filter-icon.svg"
+import searchIcon from "../../assets/search-icon.svg"
 
 export const DataContext = createContext()
 
@@ -35,7 +38,7 @@ const Dashboard = () => {
             <div className="add-filter-container">
                 <div className="add-question-button-container">
                     <button className="add-question-button">
-                        <img src="../../src/assets/plus-icon.svg" alt="Plus icon" />
+                        <img src={plusIcon} alt="Plus icon" />
                     </button>
                 </div>
 
@@ -43,7 +46,7 @@ const Dashboard = () => {
                     <input className="search" type="search" placeholder="Search" value={search} onChange={handleSearchChange}/>
 
                     <div className="search-icon-container">
-                        <img src="../../src/assets/search-icon.svg" alt="Search icon" />
+                        <img src={searchIcon} alt="Search icon" />
                     </div>
                 </form>
 
@@ -54,7 +57,7 @@ const Dashboard = () => {
                         <option value="true">Resolved questions</option>
                     </select>
 
-                    <img src="../../src/assets/filter-icon.svg" alt="Filter icon" />
+                    <img src={filterIcon} alt="Filter icon" />
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ import "./question.css"
 import { createForecast, getQuestions, resolveQuestion } from "../../service/apiClient"
 import { DataContext } from "../../pages/dashboard"
 import useAuth from "../../hooks/useAuth"
+import moreIcon from "../../assets/down-arrow-icon.svg"
 
 const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const [showMore, setShowMore] = useState(false)
@@ -93,7 +94,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                 <div className="more-container">
                     {forecasts.length > 0 && 
                         <button className="more-button" onClick={() => setShowMore(!showMore)}>
-                            <img src="../../src/assets/down-arrow-icon.svg" alt="Down arrow icon" />
+                            <img src={moreIcon} alt="Down arrow icon" />
                         </button>
                     }
                 </div>
