@@ -18,7 +18,51 @@ header img {
     place-content: center;
     border-radius: 50%;
     height: 50px;
+    width: 50px;
     color: white;
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+.profile-drop-down-ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.profile-drop-down-ul li {
+    display: grid;
+    align-content: center;
+}
+
+.profile-drop-down-container {
+    background-color: white;
+    position: absolute;
+    right: 10px;
+    top: 85px;
+    z-index: 1;
+    width: 200px;
+    border-radius: 8px;
+    border: 1px solid #515A47;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+header a {
+    color: black;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: 1rem;
+    padding-left: 1rem;
+}
+
+.profile-drop-down-container img {
+    height: 30px;
+    padding: 0;
+}
+
+header a p {
+    margin: 0;
+    display: grid;
+    align-content: center;
 }

@@ -45,6 +45,22 @@ const AuthProvider = ({ children }) => {
         }
     }, [token])
 
+    const useClickOutside = (ref, onClickOutside) => {
+        useEffect(() => {
+          const handleClickOutside = (e) => {
+            if (ref.current && !ref.current.contains(e.target)) {
+              onClickOutside()
+            }
+          }
+    
+          document.addEventListener("mousedown", handleClickOutside)
+    
+          return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+          }
+        }, [ref, onClickOutside])
+      }
+
     const handleLogin = async (email, password) => {
         try {
             if (!email || !password) {
@@ -117,7 +133,8 @@ const AuthProvider = ({ children }) => {
         error,
         setError,
         handleRegister,
-        currentUser
+        currentUser,
+        useClickOutside
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -5,7 +5,9 @@ main {
 }
 .questions-container {
     display: grid;
-    justify-content: center;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: 
+    '. questions-ul .';
     margin-top: 1rem;
 }
 
@@ -15,6 +17,7 @@ main {
     display: grid;
     gap: 1rem;
     width: 1000px;
+    grid-area: questions-ul;
 }
 
 .add-question-button {
