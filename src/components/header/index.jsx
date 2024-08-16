@@ -3,6 +3,7 @@ import ProfileCard from "../profileCard"
 import "./header.css"
 import useAuth from "../../hooks/useAuth"
 import { NavLink } from "react-router-dom"
+import lightLogo from "../../assets/lightlogo.png"
 
 const Header = () => {
     const [isMenuVisible, setIsMenuVisible] = useState(false)
@@ -15,7 +16,7 @@ const Header = () => {
 
     return (
         <header>
-            <img src="../../src/assets/lightlogo.png" alt="Predictify logo light coloured" />
+            <img src={lightLogo} alt="Predictify logo light coloured" />
             <div ref={profileIconRef}>
                 <ProfileCard name={`profile-card-header-container`} onClick={() => setIsMenuVisible(!isMenuVisible)}/>
 
