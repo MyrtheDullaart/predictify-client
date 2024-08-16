@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react"
 import Forecasts from "../forecasts"
 import ProfileCardQuestion from "../questionProfileCard"
 import "./question.css"
-import { createForecast, getQuestions } from "../../service/apiClient"
+import { createForecast, getQuestions, resolveQuestion } from "../../service/apiClient"
 import { DataContext } from "../../pages/dashboard"
 import useAuth from "../../hooks/useAuth"
 
@@ -72,6 +72,15 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
         })
     }
 
+    const handleYesSumbit = async () => {
+        await resolveQuestion({questionId: questionId, resolution: 'YES'})
+        getQuestions(resolved).then(setQuestions)
+    }
+
+    const handleNoSumbit = async () => {
+        await resolveQuestion({questionId: questionId, resolution: 'NO'})
+        getQuestions(resolved).then(setQuestions)
+    }
 
     return (
         <li className="question-li">
@@ -94,30 +103,30 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
             </div>
 
             <div className="resolution-container">
-                {!resolution && 
-                    <div className="resolve-container" ref={resolveButtonRef}>
+                <div ref={resolveButtonRef} className="resolve-container">
+                    {!resolution && 
                         <button className="resolve-button" onClick={() => setIsMenuVisible(!isMenuVisible)}>Resolve</button>
-                    </div>
-                }
+                    }
 
-                {isMenuVisible &&
-                    <div className="resolve-drop-down-container">
-                        <ul className="resolve-drop-down-ul">
-                            <li>
-                                <button>
-                                    <div className="green-circle"></div>
-                                    <p>Yes</p>
-                                </button>
-                            </li>
-                            <li>
-                                <button>
-                                    <div className="red-circle"></div>
-                                    <p>No</p>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                }
+                    {isMenuVisible &&
+                        <div className="resolve-drop-down-container">
+                            <ul className="resolve-drop-down-ul">
+                                <li>
+                                    <button onClick={handleYesSumbit}>
+                                        <div className="green-circle"></div>
+                                        <p>Yes</p>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onClick={handleNoSumbit}>
+                                        <div className="red-circle"></div>
+                                        <p>No</p>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                </div>
 
                 {resolution && 
                     <p className={`resolved ${resolution}`}>{resolution}</p>
