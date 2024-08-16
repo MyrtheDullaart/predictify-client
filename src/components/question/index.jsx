@@ -1,18 +1,25 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import Forecasts from "../forecasts"
 import ProfileCardQuestion from "../questionProfileCard"
 import "./question.css"
 import { createForecast, getQuestions } from "../../service/apiClient"
 import { DataContext } from "../../pages/dashboard"
+import useAuth from "../../hooks/useAuth"
 
 const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const [showMore, setShowMore] = useState(false)
+    const { setQuestions, resolved } = useContext(DataContext)
+    const [isMenuVisible, setIsMenuVisible] = useState(false)
+    const resolveButtonRef = useRef(null)
+    const { useClickOutside } = useAuth()
     const [forecastData, setForecastData] = useState({
         questionId: questionId,
         prediction: ""
     })
-    const { setQuestions, resolved } = useContext(DataContext)
 
+    useClickOutside(resolveButtonRef, () => {
+        setIsMenuVisible(false)
+    })
 
     let forecastAverage = null
 
@@ -88,7 +95,28 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
 
             <div className="resolution-container">
                 {!resolution && 
-                    <button className="resolve-button">Resolve</button>
+                    <div className="resolve-container" ref={resolveButtonRef}>
+                        <button className="resolve-button" onClick={() => setIsMenuVisible(!isMenuVisible)}>Resolve</button>
+                    </div>
+                }
+
+                {isMenuVisible &&
+                    <div className="resolve-drop-down-container">
+                        <ul className="resolve-drop-down-ul">
+                            <li>
+                                <button>
+                                    <div className="green-circle"></div>
+                                    <p>Yes</p>
+                                </button>
+                            </li>
+                            <li>
+                                <button>
+                                    <div className="red-circle"></div>
+                                    <p>No</p>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 }
 
                 {resolution && 
