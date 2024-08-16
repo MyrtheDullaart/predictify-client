@@ -35,7 +35,7 @@ async function createForecast(data) {
 }
 
 async function resolveQuestion(data) {
-  return await post('question', data)
+  return await patch('questions', data)
 }
 
 async function post(endpoint, data, auth = true) {

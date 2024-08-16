@@ -75,11 +75,13 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const handleYesSumbit = async () => {
         await resolveQuestion({questionId: questionId, resolution: 'YES'})
         getQuestions(resolved).then(setQuestions)
+        setIsMenuVisible(!isMenuVisible)
     }
 
     const handleNoSumbit = async () => {
         await resolveQuestion({questionId: questionId, resolution: 'NO'})
         getQuestions(resolved).then(setQuestions)
+        setIsMenuVisible(!isMenuVisible)
     }
 
     return (
