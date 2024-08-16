@@ -1,3 +1,5 @@
+import './forecast.css'
+
 const Forecast = ({ prediction, author }) => {
   return (
     <li className="forecast-li">

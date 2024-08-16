@@ -3,12 +3,18 @@ main {
     margin-top: 1rem;
     overflow: auto;
 }
+.questions-container {
+    display: grid;
+    justify-content: center;
+    margin-top: 1rem;
+}
 
 .questions-ul {
     padding: 0;
     list-style: none;
     display: grid;
     gap: 1rem;
+    width: 1000px;
 }
 
 .add-question-button {
@@ -26,7 +32,7 @@ main {
 .add-filter-container {
     padding-left: 20px;
     display: grid;
-    grid-template-columns: 1fr 1.3fr 250px;
+    grid-template-columns: 1fr 1.3fr 235px;
     align-items: center;
 }
 
@@ -42,6 +48,7 @@ main {
     display: grid;
     grid-template-columns: repeat(2, min-content);
     gap: 1rem;
+    width: fit-content;
 }
 
 #filter:focus {

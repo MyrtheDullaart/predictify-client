@@ -11,7 +11,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
         questionId: questionId,
         prediction: ""
     })
-    const { questions, setQuestions, resolved } = useContext(DataContext)
+    const { setQuestions, resolved } = useContext(DataContext)
 
 
     let forecastAverage = null
@@ -33,7 +33,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
         })
     }
 
-    const handleSumbit = async (e) => {
+    const handleQuickSumbit = async (e) => {
         const inputLength = forecastData.prediction.length
 
         if (inputLength === 2) {
@@ -51,6 +51,20 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
         }
     }
 
+    const handleSumbit = async (e) => {
+        e.preventDefault()
+
+        forecastData.prediction = (Number(forecastData.prediction) / 100).toFixed(2)
+        
+        await createForecast(forecastData)
+        getQuestions(resolved).then(setQuestions)
+
+        setForecastData({
+            questionId: questionId,
+            prediction: ""
+        })
+    }
+
 
     return (
         <li className="question-li">
@@ -66,10 +80,10 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                     }
                 </div>
 
-                <div className="new-forecast-container">
-                    <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
+                <form className="new-forecast-container" onSubmit={handleSumbit}>
+                    <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleQuickSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
                     <p>%</p>
-                </div>
+                </form>
             </div>
 
             <div className="resolution-container">

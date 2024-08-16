@@ -1,7 +1,7 @@
 .question-li {
     background-color: white;
     display: grid;
-    padding: 30px;
+    padding: 20px 30px;
     border-radius: 20px;
     gap: 1rem;
 }
@@ -69,8 +69,7 @@
     background-color: #E6E5E3;
     color: black;
     width: min-content;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 0 10px;
     border-radius: 8px;
     place-content: center;
     grid-area: forecast;
@@ -93,6 +92,7 @@
     height: 30px;
     font-size: 1rem;
     text-align: right;
+    padding: 0;
 }
 
 .new-forecast-container input::placeholder {
@@ -103,7 +103,9 @@
 }
 
 .new-forecast-container input:focus {
-    outline: none;
+    border: none !important; 
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .question-container {
@@ -123,4 +125,11 @@
 .more-container {
     display: grid;
     place-content: center;
+}
+
+.forecasts-ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    border-top: 1px solid rgb(175, 175, 175);
 }
