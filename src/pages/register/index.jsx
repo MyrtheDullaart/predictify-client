@@ -5,6 +5,7 @@ import TextInput from "../../components/form/textInput"
 import useAuth from "../../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 import "./register.css"
+import logo from "../../assets/logo.png"
 
 const Register = () => {
     const { handleRegister, error } = useAuth()
@@ -28,7 +29,7 @@ const Register = () => {
         <div className="login-register-container ">
             <div className="register-form-container">
                 <div className="logo-container">
-                    <img src="/../../src/assets/logo.png" alt="logo" className="logo"/>
+                    <img src={logo} alt="logo" className="logo"/>
                 </div>
 
                 <div className="register-form">

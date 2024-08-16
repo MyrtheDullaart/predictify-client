@@ -5,6 +5,7 @@ import "./login.css"
 import Button from "../../components/button/index.jsx"
 import useAuth from "../../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
+import logo from "../../assets/logo.png"
 
 const Login = () => {
     const { handleLogin, error } = useAuth()
@@ -23,7 +24,7 @@ const Login = () => {
         <div className="login-register-container">
             <div className="login-form-container">
                 <div className="logo-container">
-                    <img src="/../../src/assets/logo.png" alt="logo" className="logo"/>
+                    <img src={logo} alt="logo" className="logo"/>
                 </div>
                 
                 <div className="login-form">

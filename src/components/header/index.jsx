@@ -4,6 +4,8 @@ import "./header.css"
 import useAuth from "../../hooks/useAuth"
 import { NavLink } from "react-router-dom"
 import lightLogo from "../../assets/lightlogo.png"
+import logoutIcon from "../../assets/logout-icon.svg"
+import profileIcon from "../../assets/dark-profile-icon.svg"
 
 const Header = () => {
     const [isMenuVisible, setIsMenuVisible] = useState(false)
@@ -25,13 +27,13 @@ const Header = () => {
                         <ul className="profile-drop-down-ul">
                             <li>
                                 <NavLink to={"/profile"}>
-                                    <img src="../../src/assets/profile-icon.svg" alt="Profile icon" />
+                                    <img src={profileIcon} alt="Profile icon" />
                                     <p>Profile</p>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink to={"/login"} onClick={handleLogout}>
-                                    <img src="../../src/assets/logout-icon.svg" alt="Logout icon" />
+                                    <img src={logoutIcon} alt="Logout icon" />
                                     <p>Log out</p>
                                 </NavLink>
                             </li>
