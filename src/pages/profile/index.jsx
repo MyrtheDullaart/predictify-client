@@ -20,15 +20,21 @@ const ProfilePage = () => {
         })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+
+    }
+
     return (
       <>
-        <main>
+        <main className="profile-main">
             <div className="profile-container">
                 <ProfileCard disabled={true} />
                 <h2>{currentUser.first_name} {currentUser.last_name}</h2>
             </div>
 
-            <form className="profile-form-container">
+            <form className="profile-form-container" onSubmit={handleSubmit}>
                 <TextInput
                     value={formData.email}
                     onChange={onChange}
