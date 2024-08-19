@@ -6,13 +6,18 @@ import { createForecast, getQuestions, resolveQuestion } from "../../service/api
 import { DataContext } from "../../pages/dashboard"
 import useAuth from "../../hooks/useAuth"
 import moreIcon from "../../assets/down-arrow-icon.svg"
+import optionsIcon from "../../assets/options-icon.svg"
+import editIcon from "../../assets/edit-icon.svg"
+import deleteIcon from "../../assets/delete-icon.svg"
 
 const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const [showMore, setShowMore] = useState(false)
     const { setQuestions, resolved } = useContext(DataContext)
     const [isMenuVisible, setIsMenuVisible] = useState(false)
     const resolveButtonRef = useRef(null)
+    const optionsButtonRef = useRef(null)
     const { useClickOutside } = useAuth()
+    const [options, setOptions] = useState(false)
     const [forecastData, setForecastData] = useState({
         questionId: questionId,
         prediction: ""
@@ -20,6 +25,10 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
 
     useClickOutside(resolveButtonRef, () => {
         setIsMenuVisible(false)
+    })
+
+    useClickOutside(optionsButtonRef, () => {
+        setOptions(false)
     })
 
     let forecastAverage = null
@@ -91,6 +100,40 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                 <ProfileCardQuestion user={user}/>
                 <p className="question-title">{title}</p>
 
+                <div className="forecast-options-container">
+                    <form className="new-forecast-container" onSubmit={handleSumbit}>
+                        <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleQuickSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
+                        <p>%</p>
+                    </form>
+
+                    <div className="options-container" ref={optionsButtonRef}>
+                        <button className="options-button" onClick={() => setOptions(!options)}><img src={optionsIcon} alt="Options icon" /></button>
+
+                        {options &&
+                            <div className="options-drop-down-container">
+                                <ul className="options-drop-down-ul">
+                                    <li>
+                                        <button>
+                                            <img src={editIcon} alt="Edit icon" />
+                                            <p>Edit question</p>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button>
+                                            <img src={deleteIcon} alt="Delete icon" />
+                                            <p>Delete question</p>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className="resolution-container">
                 <div className="more-container">
                     {forecasts.length > 0 && 
                         <button className="more-button" onClick={() => setShowMore(!showMore)}>
@@ -99,13 +142,6 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                     }
                 </div>
 
-                <form className="new-forecast-container" onSubmit={handleSumbit}>
-                    <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleQuickSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
-                    <p>%</p>
-                </form>
-            </div>
-
-            <div className="resolution-container">
                 <div ref={resolveButtonRef} className="resolve-container">
                     {!resolution && 
                         <button className="resolve-button" onClick={() => setIsMenuVisible(!isMenuVisible)}>Resolve</button>
