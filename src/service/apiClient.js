@@ -42,6 +42,10 @@ async function createQuestion(data) {
   return await post('questions', data)
 }
 
+async function deleteQuestion(data) {
+  return await deleting('questions', data)
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
 }
@@ -52,6 +56,10 @@ async function patch(endpoint, data, auth = true) {
 
 async function get(endpoint, query, auth = true, ) {
   return await request('GET', endpoint, null, auth, query)
+}
+
+async function deleting(endpoint, data, auth = true ) {
+  return await request('DELETE', endpoint, data, auth)
 }
 
 async function request(method, endpoint, data, auth = true, query) {
@@ -81,4 +89,13 @@ async function request(method, endpoint, data, auth = true, query) {
   return response.json()
 }
 
-export { login, register, getUser, getQuestions, createForecast, resolveQuestion, createQuestion }
+export { 
+  login, 
+  register, 
+  getUser, 
+  getQuestions, 
+  createForecast, 
+  resolveQuestion, 
+  createQuestion, 
+  deleteQuestion 
+}

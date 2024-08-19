@@ -2,7 +2,7 @@ import { useContext, useRef, useState } from "react"
 import Forecasts from "../forecasts"
 import ProfileCardQuestion from "../questionProfileCard"
 import "./question.css"
-import { createForecast, getQuestions, resolveQuestion } from "../../service/apiClient"
+import { createForecast, deleteQuestion, getQuestions, resolveQuestion } from "../../service/apiClient"
 import { DataContext } from "../../pages/dashboard"
 import useAuth from "../../hooks/useAuth"
 import moreIcon from "../../assets/down-arrow-icon.svg"
@@ -94,6 +94,12 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
         setIsMenuVisible(!isMenuVisible)
     }
 
+    const handleDelete = async () => {
+        await deleteQuestion({questionId: questionId})
+        getQuestions(resolved).then(setQuestions)
+        setOptions(!options)
+    }
+
     return (
         <li className="question-li">
             <div className="question-container">
@@ -119,7 +125,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                                         </button>
                                     </li>
                                     <li>
-                                        <button>
+                                        <button onClick={handleDelete}>
                                             <img src={deleteIcon} alt="Delete icon" />
                                             <p>Delete question</p>
                                         </button>
