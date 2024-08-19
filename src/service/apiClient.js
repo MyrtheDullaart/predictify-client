@@ -38,6 +38,10 @@ async function resolveQuestion(data) {
   return await patch('questions', data)
 }
 
+async function createQuestion(data) {
+  return await post('questions', data)
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
 }
@@ -77,4 +81,4 @@ async function request(method, endpoint, data, auth = true, query) {
   return response.json()
 }
 
-export { login, register, getUser, getQuestions, createForecast, resolveQuestion }
+export { login, register, getUser, getQuestions, createForecast, resolveQuestion, createQuestion }

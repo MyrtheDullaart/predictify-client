@@ -7,6 +7,7 @@ import { validateEmail, validatePassword } from "../service/validation.js"
 import Header from "../components/header/index.jsx"
 import Navigation from "../components/navigation/index.jsx"
 import { jwtDecode } from 'jwt-decode'
+import Modal from "../components/modal/index.jsx"
 
 const AuthContext = createContext()
 
@@ -152,6 +153,7 @@ const ProtectedRoute = ({ children }) => {
         <div className="container">
             <Header />
             <Navigation />
+            <Modal />
             {children}
         </div>
     )
