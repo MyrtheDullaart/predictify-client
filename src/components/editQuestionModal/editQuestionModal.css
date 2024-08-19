@@ -1,10 +1,10 @@
-.create-question-container {
+.edit-question-container {
     display: grid;
     place-content: center;
     gap: 1rem;
 }
 
-.create-question-container input {
+.edit-question-container input {
     width: 500px;
     background-color: #E6E5E3;
     padding: 14px 20px;
@@ -13,28 +13,28 @@
     color: black;
 }
 
-.create-question-container h2 {
+.edit-question-container h2 {
     margin: 0;
     color: #515A47;
 }
 
-.create-question-container button {
+.edit-question-container button {
     width: fit-content;
     background-color: #673C4F;
 }
 
-.create-question-header {
+.edit-question-header {
     display: grid;
     grid-template-columns: 1fr min-content;
 }
 
-.create-question-header button {
+.edit-question-header button {
     background-color: #515A47;
     height: fit-content;
     width: fit-content;
     padding: 1px 5px;
 }
 
-.create-question-header button img {
+.edit-question-header button img {
     height: 15px;
 }

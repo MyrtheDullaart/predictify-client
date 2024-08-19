@@ -56,7 +56,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const handleQuickSumbit = async (e) => {
         const inputLength = forecastData.prediction.length
 
-        if (inputLength === 2) {
+        if (inputLength === 3) {
             e.preventDefault()
 
             forecastData.prediction = (Number(forecastData.prediction) / 100).toFixed(2)
@@ -117,7 +117,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
 
                 <div className="forecast-options-container">
                     <form className="new-forecast-container" onSubmit={handleSumbit}>
-                        <input type="text" placeholder={forecastAverage} maxLength={2} onChange={handleChange} onKeyUp={handleQuickSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
+                        <input type="text" placeholder={forecastAverage} maxLength={3} onChange={handleChange} onKeyUp={handleQuickSumbit} value={forecastData.prediction} disabled={resolution ? "disabled" : ""}/>
                         <p>%</p>
                     </form>
 
