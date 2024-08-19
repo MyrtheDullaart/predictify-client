@@ -1,18 +1,17 @@
 import { useState } from 'react'
 import useModal from '../../hooks/useModal'
-import { createQuestion, getQuestions } from '../../service/apiClient'
-import './createQuestionModal.css'
+import { getQuestions, resolveQuestion } from '../../service/apiClient'
 
-const CreateQuestionModal = ({ setQuestions, resolved }) => {
+const EditQuestionModal = ({ setQuestions, resolved, questionId, title }) => {
     const { closeModal } = useModal()
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState(title)
 
     const onChange = (e) => {
         setContent(e.target.value)
     }
 
     const onSubmit = async () => {
-        const res = await createQuestion({title: content})
+        const res = await resolveQuestion({questionId: questionId, title: content})
 
         if (res.status === "success") {
             closeModal()
@@ -23,9 +22,9 @@ const CreateQuestionModal = ({ setQuestions, resolved }) => {
     return (
         <>
             <div className='create-question-container'>
-                <h2>Create question</h2>
+                <h2>Edit question</h2>
 
-                <input type="text" placeholder='Will I pass my next exam?' value={content} onChange={onChange}/>
+                <input type="text" value={content} onChange={onChange}/>
 
                 <button onClick={onSubmit}>Submit</button>
             </div>
@@ -33,4 +32,4 @@ const CreateQuestionModal = ({ setQuestions, resolved }) => {
     )
 }
 
-export default CreateQuestionModal
+export default EditQuestionModal

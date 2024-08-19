@@ -9,6 +9,8 @@ import moreIcon from "../../assets/down-arrow-icon.svg"
 import optionsIcon from "../../assets/options-icon.svg"
 import editIcon from "../../assets/edit-icon.svg"
 import deleteIcon from "../../assets/delete-icon.svg"
+import useModal from "../../hooks/useModal"
+import EditQuestionModal from "../editQuestionModal"
 
 const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const [showMore, setShowMore] = useState(false)
@@ -18,6 +20,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const optionsButtonRef = useRef(null)
     const { useClickOutside } = useAuth()
     const [options, setOptions] = useState(false)
+    const { openModal, setModal } = useModal()
     const [forecastData, setForecastData] = useState({
         questionId: questionId,
         prediction: ""
@@ -100,6 +103,12 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
         setOptions(!options)
     }
 
+    const showModal = () => {
+        setModal(<EditQuestionModal setQuestions={setQuestions} resolved={resolved} questionId={questionId} title={title}/>)
+        setOptions(!options)
+        openModal()
+    }
+
     return (
         <li className="question-li">
             <div className="question-container">
@@ -119,7 +128,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                             <div className="options-drop-down-container">
                                 <ul className="options-drop-down-ul">
                                     <li>
-                                        <button>
+                                        <button onClick={showModal}>
                                             <img src={editIcon} alt="Edit icon" />
                                             <p>Edit question</p>
                                         </button>

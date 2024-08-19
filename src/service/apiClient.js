@@ -97,5 +97,5 @@ export {
   createForecast, 
   resolveQuestion, 
   createQuestion, 
-  deleteQuestion 
+  deleteQuestion,
 }
