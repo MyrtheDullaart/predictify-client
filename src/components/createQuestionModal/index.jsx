@@ -17,7 +17,7 @@ const CreateQuestionModal = ({ setQuestions, resolved }) => {
 
         if (res.status === "success") {
             closeModal()
-            getQuestions(resolved).then(setQuestions)
+            await getQuestions(resolved).then(setQuestions)
         }
     }
 

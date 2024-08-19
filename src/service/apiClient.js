@@ -46,6 +46,10 @@ async function deleteQuestion(data) {
   return await deleting('questions', data)
 }
 
+async function editUser(data) {
+  return await patch('users', data)
+}
+
 async function post(endpoint, data, auth = true) {
   return await request('POST', endpoint, data, auth)
 }
@@ -98,4 +102,5 @@ export {
   resolveQuestion, 
   createQuestion, 
   deleteQuestion,
+  editUser
 }

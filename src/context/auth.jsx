@@ -9,7 +9,7 @@ import Navigation from "../components/navigation/index.jsx"
 import { jwtDecode } from 'jwt-decode'
 import Modal from "../components/modal/index.jsx"
 
-const AuthContext = createContext()
+const AuthContext = createContext("")
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
@@ -135,7 +135,8 @@ const AuthProvider = ({ children }) => {
         setError,
         handleRegister,
         currentUser,
-        useClickOutside
+        useClickOutside,
+        setCurrentUser
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

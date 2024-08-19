@@ -28,10 +28,10 @@ const Dashboard = () => {
         setSearch(e.target.value)
     }
 
-    const handleSearchSumbit = (e) => {
+    const handleSearchSumbit = async (e) => {
         e.preventDefault()
 
-        getQuestions(resolved, search).then(setQuestions)
+        await getQuestions(resolved, search).then(setQuestions)
     }
 
     const showModal = () => {

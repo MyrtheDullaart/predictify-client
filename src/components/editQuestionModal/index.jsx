@@ -17,7 +17,7 @@ const EditQuestionModal = ({ setQuestions, resolved, questionId, title }) => {
 
         if (res.status === "success") {
             closeModal()
-            getQuestions(resolved).then(setQuestions)
+            await getQuestions(resolved).then(setQuestions)
         }
     }
 
