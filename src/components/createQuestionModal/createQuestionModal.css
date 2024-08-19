@@ -1,0 +1,23 @@
+.create-question-container {
+    display: grid;
+    place-content: center;
+    gap: 1rem;
+}
+
+.create-question-container input {
+    width: 500px;
+    background-color: #E6E5E3;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+}
+
+.create-question-container h2 {
+    margin: 0;
+    color: #515A47;
+}
+
+.create-question-container button {
+    width: fit-content;
+    background-color: #673C4F;
+}

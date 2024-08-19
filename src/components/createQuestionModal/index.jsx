@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useModal from '../../hooks/useModal'
 import { createQuestion, getQuestions } from '../../service/apiClient'
+import './createQuestionModal.css'
 
 const CreateQuestionModal = ({ setQuestions, resolved }) => {
     const { closeModal } = useModal()
@@ -23,7 +24,7 @@ const CreateQuestionModal = ({ setQuestions, resolved }) => {
 
     return (
         <>
-            <div>
+            <div className='create-question-container'>
                 <h2>Create question</h2>
 
                 <input type="text" placeholder='Will I pass my next exam?' value={content} onChange={onChange}/>
