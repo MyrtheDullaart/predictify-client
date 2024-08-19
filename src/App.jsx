@@ -5,6 +5,7 @@ import Login from "./pages/login/index.jsx"
 import Dashboard from './pages/dashboard/index.jsx'
 import Register from './pages/register/index.jsx'
 import { ModalProvider } from './context/modal.jsx'
+import ProfilePage from './pages/profile/index.jsx'
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path='/' element={<ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+          <Route path='/profile' element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}/>
+
         </Routes>
       </ModalProvider>
     </AuthProvider>

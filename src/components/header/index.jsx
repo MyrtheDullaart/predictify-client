@@ -26,7 +26,7 @@ const Header = () => {
                     <div className="profile-drop-down-container">
                         <ul className="profile-drop-down-ul">
                             <li>
-                                <NavLink to={"/profile"}>
+                                <NavLink to={"/profile"} onClick={() => setIsMenuVisible(false)}>
                                     <img src={profileIcon} alt="Profile icon" />
                                     <p>Profile</p>
                                 </NavLink>

@@ -3,6 +3,7 @@ main {
     margin-top: 1rem;
     overflow: auto;
 }
+
 .questions-container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;

@@ -1,0 +1,36 @@
+.profile-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-left: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(170, 170, 170);
+}
+
+h2 {
+    margin: 0;
+}
+
+.profile-form-container {
+    padding-left: 20px;
+    display: grid;
+    gap: 2rem;
+}
+
+.profile-form-container input {
+    width: 500px;
+}
+
+.save-button-container {
+    display: grid;
+    justify-content: right;
+    height: 390px;
+    align-items: end;
+}
+
+.save-button-container button {
+    background-color: #673C4F;
+    padding: 8px 50px;
+}
