@@ -72,6 +72,13 @@ const Dashboard = () => {
                 <div className="questions-container">
                     <Questions questions={questions}/>
                 </div>
+                
+                <div className="no-questions">
+                    {questions.length === 0 && 
+                        <p>No questions yet. Create your first question!</p>
+                    }
+                </div>
+
             </main>
         </DataContext.Provider>
       </>

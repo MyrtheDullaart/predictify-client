@@ -22,3 +22,13 @@
     font-weight: normal;
     font-size: 1.3rem
 }
+
+.no-score {
+    font-size: 1.2rem !important;
+    font-weight: normal !important;
+}
+
+.briar-score-container div {
+    display: grid;
+    place-items: center;
+}

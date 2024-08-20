@@ -15,8 +15,6 @@ const StatsPage = () => {
         brierScores.push(Number(question.brierScore))
     })
 
-    console.log(brierScores)
-
     let brierScoreAverage = null
 
     if (brierScores.length > 0) {
@@ -34,7 +32,10 @@ const StatsPage = () => {
                 }
 
                 {!brierScoreAverage &&
-                    <p>No score yet! Resolve your first question to get a score!</p>
+                    <div>
+                        <p className='no-score'>No score yet.</p>
+                        <p className='no-score'>Resolve your first question to get a score!</p>
+                    </div>
                 }
             </div>
 

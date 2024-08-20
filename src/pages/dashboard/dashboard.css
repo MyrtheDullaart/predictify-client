@@ -92,3 +92,8 @@
     display: grid;
     place-content: center;
 }
+
+.no-questions {
+    display: grid;
+    place-items: center;
+}
