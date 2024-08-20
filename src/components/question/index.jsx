@@ -86,13 +86,15 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
     }
 
     const handleYesSumbit = async () => {
-        await resolveQuestion({questionId: questionId, resolution: 'YES'})
+        const brierScore = ((forecastAverage / 100) - 1) ** 2
+        await resolveQuestion({questionId: questionId, resolution: 'YES', brierScore: brierScore})
         getQuestions(resolved).then(setQuestions)
         setIsMenuVisible(!isMenuVisible)
     }
 
     const handleNoSumbit = async () => {
-        await resolveQuestion({questionId: questionId, resolution: 'NO'})
+        const brierScore = ((forecastAverage / 100) - 0) ** 2
+        await resolveQuestion({questionId: questionId, resolution: 'NO', brierScore: brierScore})
         getQuestions(resolved).then(setQuestions)
         setIsMenuVisible(!isMenuVisible)
     }

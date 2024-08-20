@@ -1,0 +1,24 @@
+.stats-container {
+    margin-left: 20px;
+}
+
+.briar-score-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: fit-content;
+    display: grid;
+    place-items: center;
+}
+
+.briar-score-container p {
+    font-weight: bolder;
+    font-size: 2rem;
+    margin: 0;
+    color: #26294C;
+}
+
+.briar-score-container h2 {
+    font-weight: normal;
+    font-size: 1.3rem
+}

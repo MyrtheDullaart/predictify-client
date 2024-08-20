@@ -55,3 +55,30 @@ button {
 a {
   text-decoration: none;
 }
+
+main {
+  margin-top: 1rem;
+  overflow: auto;
+  padding-right: 1rem;
+}
+
+
+main {
+  --sb-track-color: #E6E5E3;
+  --sb-thumb-color: #b0c4b1;
+  --sb-size: 7px;
+}
+
+main::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+main::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 7px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 7px;
+}
