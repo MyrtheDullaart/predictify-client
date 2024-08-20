@@ -1,5 +1,7 @@
 .stats-container {
     margin-left: 20px;
+    display: grid;
+    grid-template-columns: auto min-content;
 }
 
 .briar-score-container {
@@ -31,4 +33,13 @@
 .briar-score-container div {
     display: grid;
     place-items: center;
+}
+
+.explanation-container {
+    height: 387px;
+    width: 700px;
+}
+
+.ag-theme-quartz {
+    --ag-header-background-color: #26294C;
 }
