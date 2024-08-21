@@ -39,7 +39,7 @@
 .resolve-button {
     background-color: #673C4F;
     width: min-content;
-    padding: 4px 10px;
+    padding: 4px 15px;
     grid-area: resolution;
 }
 
@@ -47,7 +47,7 @@
     color: white;
     font-weight: bold;
     font-size: 0.8rem;
-    width: 77.71px;
+    width: 87.17px;
     height: 31px;
     border-radius: 8px;
     display: grid;
