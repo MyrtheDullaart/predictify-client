@@ -74,7 +74,7 @@ const Dashboard = () => {
                 </div>
                 
                 <div className="no-questions">
-                    {questions.length === 0 && 
+                    {questions.length === 0 && !resolved && 
                         <p>No questions yet. Create your first question!</p>
                     }
                 </div>
