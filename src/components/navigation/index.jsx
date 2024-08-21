@@ -6,6 +6,20 @@ import profileIcon from '../../assets/profile-icon.svg'
 import aboutIcon from '../../assets/info-icon.svg'
 
 const Navigation = () => {
+    function currentPage() {
+        const url = window.location.href
+        const currentLinks = document.querySelectorAll("a")
+
+        currentLinks.forEach((link) => {
+            if (link.href === url) {
+                const currentLink = link
+                currentLink.className += ' current'
+            }
+        })
+    }
+
+    currentPage()
+
     return (
         <aside>
             <ul className="navigation-ul">
