@@ -56,7 +56,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const handleQuickSumbit = async (e) => {
         const inputLength = forecastData.prediction.length
 
-        if (inputLength === 3) {
+        if (inputLength === 3 && Number(forecastData.prediction) <= 100) {
             e.preventDefault()
 
             forecastData.prediction = (Number(forecastData.prediction) / 100).toFixed(2)
@@ -74,15 +74,17 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
     const handleSumbit = async (e) => {
         e.preventDefault()
 
-        forecastData.prediction = (Number(forecastData.prediction) / 100).toFixed(2)
-        
-        await createForecast(forecastData)
-        getQuestions(resolved).then(setQuestions)
-
-        setForecastData({
-            questionId: questionId,
-            prediction: ""
-        })
+        if (Number(forecastData.prediction) <= 100) {
+            forecastData.prediction = (Number(forecastData.prediction) / 100).toFixed(2)
+            
+            await createForecast(forecastData)
+            getQuestions(resolved).then(setQuestions)
+    
+            setForecastData({
+                questionId: questionId,
+                prediction: ""
+            })
+        }
     }
 
     const handleYesSumbit = async () => {
@@ -160,7 +162,7 @@ const Question = ({ title, user, forecasts, resolution, questionId }) => {
                 </div>
 
                 <div ref={resolveButtonRef} className="resolve-container">
-                    {!resolution && 
+                    {!resolution && forecasts.length > 0 &&
                         <button className="resolve-button" onClick={() => setIsMenuVisible(!isMenuVisible)}>Resolve</button>
                     }
 
