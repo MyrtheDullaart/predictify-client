@@ -26,7 +26,7 @@ const Navigation = () => {
                 <li>
                     <NavLink to={'/'}>
                         <img src={homeIcon} alt="Home icon" />
-                        <p className="home-text">Home</p>
+                        <p>Home</p>
                     </NavLink>
                 </li>
                 <li>

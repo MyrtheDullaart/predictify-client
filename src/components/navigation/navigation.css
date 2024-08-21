@@ -41,10 +41,6 @@ aside a {
     border-top: #adadac 1px solid;
 }
 
-.home-text {
-    color: #515a47;
-}
-
 .current {
     filter: brightness(0) saturate(100%) invert(33%) sepia(29%) saturate(269%) hue-rotate(46deg) brightness(93%) contrast(89%);
 }
