@@ -1,3 +1,8 @@
+.about-forecasting-main {
+    display: grid;
+    justify-content: center;
+}
+
 .about-forecasting-container {
     background-color: white;
     margin-left: 20px;
@@ -6,6 +11,7 @@
     border-radius: 10px;
     display: grid;
     justify-items: center;
+    width: 900px;
 }
 
 .about-forecasting-container h1 {

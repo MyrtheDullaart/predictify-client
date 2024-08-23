@@ -4,7 +4,7 @@ const AboutPage = () => {
 
     return (
       <>
-        <main>
+        <main className='about-forecasting-main'>
             <div className="about-forecasting-container">
                 <h1>About</h1>
 
