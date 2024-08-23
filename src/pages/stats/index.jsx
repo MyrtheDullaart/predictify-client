@@ -44,7 +44,7 @@ const StatsPage = () => {
     return (
       <>
         <main className='stats-container'>
-            <div >
+            <div className='briar-score'>
                 <div className="briar-score-container">
                     <h2>Average Brier Score</h2>
 

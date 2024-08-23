@@ -1,8 +1,8 @@
 .stats-container {
     margin-left: 20px;
     display: grid;
-    gap: 30px;
-    justify-items: center;
+    gap: 30px;justify-items: center;
+    align-items: center;
 }
 
 .briar-score-container {
